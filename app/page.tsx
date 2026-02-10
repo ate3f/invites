@@ -10,7 +10,7 @@ export default function Home() {
   );
 
   return (
-    <div className="md:min-w-[700px]">
+    <div className="md:min-w-[700px] w-full">
       <div className="background-container"></div>
       <div className="container ">
         <div className="rsvp-card">

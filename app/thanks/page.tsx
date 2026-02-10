@@ -5,7 +5,7 @@ export default function page() {
     <>
       <div className="background-container"></div>
       <div
-        className="small-box w-fit"
+        className="small-box bg-red-200 min-w-[400px]"
         style={{
           textAlign: "center",
           fontFamily: "Readex Pro",

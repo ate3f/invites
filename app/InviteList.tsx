@@ -43,7 +43,7 @@ export default function InviteList({ invites }: InviteListProps) {
 
       {/* Summary Stats */}
       <div className="small-box rounded-2xl shadow-2xl p-8 mb-10 border border-[#f1b24833]">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div className="grid grid-cols-3 gap-8 text-center">
           <div>
             <div className="text-5xl font-bold text-[#f1b248] mb-2">
               {invites.length}
