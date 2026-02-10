@@ -15,11 +15,7 @@ export default function Home() {
       <div className="container ">
         <div className="rsvp-card">
           <img src="mother-logo.png" alt="GEOSA Logo" className="logo" />
-          <h2>
-            {" "}
-            حفــــــــــــــــل تدشيــــــــــــن <br />
-            ليــــــــــــــــلة مؤثــــــــــــــــر
-          </h2>
+          <h2> ليــــــــــــــــلة مؤثــــــــــــــــر</h2>
           <p className="english-title">Moather Night</p>
           {!state?.message && (
             <p className="rsvp-text">
