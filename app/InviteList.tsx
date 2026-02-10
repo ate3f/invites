@@ -32,23 +32,23 @@ export default function InviteList({ invites }: InviteListProps) {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-8 min-h-screen">
+    <div className="max-w-6xl mx-auto p-4 min-h-screen">
       {/* Header Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-[#f1b248] mb-3 tracking-tight">
+      <div className="text-center mb-6">
+        <h1 className="md:text-5xl text-2xl font-bold text-[#f1b248] mb-3 tracking-tight">
           Invite Responses
         </h1>
         <p className="text-xl text-[#dc4b56] font-light">VIP Guest List</p>
       </div>
 
       {/* Summary Stats */}
-      <div className="small-box rounded-2xl shadow-2xl p-8 mb-10 border border-[#f1b24833]">
+      <div className="small-box rounded-2xl shadow-2xl p-8 mb-4 border border-[#f1b24833]">
         <div className="grid grid-cols-3 gap-8 text-center">
           <div>
             <div className="text-5xl font-bold text-[#f1b248] mb-2">
               {invites.length}
             </div>
-            <div className="text-white/80 text-sm uppercase tracking-wider">
+            <div className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
               Total Invites
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function InviteList({ invites }: InviteListProps) {
             <div className="text-5xl font-bold text-[#74bd91] mb-2">
               {acceptedInvites.length}
             </div>
-            <div className="text-white/80 text-sm uppercase tracking-wider">
+            <div className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
               Accepted
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function InviteList({ invites }: InviteListProps) {
             <div className="text-5xl font-bold text-[#ef434d] mb-2">
               {declinedInvites.length}
             </div>
-            <div className="text-white/80 text-sm uppercase tracking-wider">
+            <div className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
               Declined
             </div>
           </div>
