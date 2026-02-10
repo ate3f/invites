@@ -29,6 +29,7 @@
   }
   .rsvp-card {
     background-color: #f1b3480f;
+    backdrop-filter: blur(10px);
     padding: 40px 30px;
     border-radius: 10px;
     text-align: center;
@@ -63,7 +64,6 @@
     }
   }
   .english-title {
-    font-size: 19px;
     margin: 10px 0 25px;
     color: #dc4b56;
     @media (max-width: 768px) {
@@ -71,7 +71,6 @@
     }
   }
   .rsvp-text {
-    font-size: 18px;
     font-weight: 500;
     margin-top: 20px;
   }
@@ -84,48 +83,78 @@
   }
   .name-input {
     width: 100%;
-    padding: 15px;
+    padding: 16px 20px;
     margin: 30px 0 25px;
-    border: 1px solid #00ffff;
-    background-color: rgba(255, 255, 255, 0.95);
-    color: #333;
-    border-radius: 5px;
+    border: 2px solid rgba(241, 178, 72, 0.5);
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 12px;
     text-align: center;
     font-family: "Readex Pro", sans-serif;
     font-size: 18px;
     font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .name-input:focus {
+    outline: none;
+    border-color: #f1b248;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 4px rgba(241, 178, 72, 0.15);
   }
   .name-input::placeholder {
-    color: #888;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 400;
   }
   .button-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
+    gap: 15px;
+    margin-top: 20px;
   }
   .btn {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
+    padding: 14px 32px;
+    border: 2px solid transparent;
+    border-radius: 12px;
     font-family: "Readex Pro", sans-serif;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     color: white;
-    flex-grow: 1;
+    flex: 1;
     max-width: 210px;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
   }
-  .btn:hover {
-    transform: scale(1.05);
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  .btn:not(:disabled):active {
+    transform: translateY(0);
   }
   .btn-confirm {
-    background-color: #74bd91;
+    background: linear-gradient(135deg, #8dd4a7 0%, #74bd91 100%);
+    border-color: rgba(141, 212, 167, 0.4);
+  }
+  .btn-confirm:not(:disabled):hover {
+    background: linear-gradient(135deg, #74bd91 0%, #8dd4a7 100%);
+    border-color: #8dd4a7;
   }
   .btn-decline {
-    background-color: #ef434d;
+    background: linear-gradient(135deg, #ff6b75 0%, #ef434d 100%);
+    border-color: rgba(255, 107, 117, 0.4);
+  }
+  .btn-decline:not(:disabled):hover {
+    background: linear-gradient(135deg, #ef434d 0%, #ff6b75 100%);
+    border-color: #ff6b75;
   }
 }
 

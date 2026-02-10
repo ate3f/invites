@@ -23,7 +23,8 @@ export default function Home() {
           <p className="english-title">Moather Night</p>
           {!state?.message && (
             <p className="rsvp-text">
-              <span className="rsvp-arabic">Tap To RSVP - لتأكيد حضورك</span>
+              <span className="rsvp-arabic">Tap To RSVP </span>
+              <span className="text-white">لتأكيد حضورك</span>
             </p>
           )}
           {state?.message ? (
