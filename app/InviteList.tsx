@@ -17,19 +17,6 @@ interface InviteListProps {
   invites: Invite[];
 }
 
-/**
- * InviteList Component
- * -------------------
- * Displays a list of invite responses, separated into accepted and declined sections.
- * Shows summary statistics and uses color-coded cards for clarity.
- *
- * Props:
- * - invites: Array of invite objects with id, created_at, is_accepted, and name fields.
- *
- * Usage:
- * <InviteList invites={invitesArray} />
- */
-
 export default function InviteList({ invites }: InviteListProps) {
   const acceptedInvites = invites.filter((invite) => invite.is_accepted);
   const declinedInvites = invites.filter((invite) => !invite.is_accepted);
@@ -45,45 +32,82 @@ export default function InviteList({ invites }: InviteListProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6  min-h-screen">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-[#74bd91] mb-2">
+    <div className="max-w-6xl mx-auto p-8 min-h-screen">
+      {/* Header Section */}
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-[#f1b248] mb-3 tracking-tight">
           Invite Responses
         </h1>
-        <p className="text-[#74bd91]">VIP Guest List</p>
+        <p className="text-xl text-[#dc4b56] font-light">VIP Guest List</p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      {/* Summary Stats */}
+      <div className="small-box rounded-2xl shadow-2xl p-8 mb-10 border border-[#f1b24833]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div className="text-5xl font-bold text-[#f1b248] mb-2">
+              {invites.length}
+            </div>
+            <div className="text-white/80 text-sm uppercase tracking-wider">
+              Total Invites
+            </div>
+          </div>
+          <div>
+            <div className="text-5xl font-bold text-[#74bd91] mb-2">
+              {acceptedInvites.length}
+            </div>
+            <div className="text-white/80 text-sm uppercase tracking-wider">
+              Accepted
+            </div>
+          </div>
+          <div>
+            <div className="text-5xl font-bold text-[#ef434d] mb-2">
+              {declinedInvites.length}
+            </div>
+            <div className="text-white/80 text-sm uppercase tracking-wider">
+              Declined
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Invites Grid */}
+      <div className="grid lg:grid-cols-2 gap-8 max-h-[calc(100vh-400px)] overflow-y-auto">
         {/* Accepted Invites */}
-        <div className="small-box rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-[#74bd91] text-white px-6 py-4 flex items-center gap-3">
-            <FaUserCheck className="text-xl" />
-            <h3 className="text-xl">
-              Accepted Invites ({acceptedInvites.length})
-            </h3>
+        <div className="small-box rounded-2xl shadow-2xl overflow-hidden border border-[#74bd9133]">
+          <div className="bg-gradient-to-r from-[#74bd91] to-[#5da577] text-white px-6 py-5 flex items-center gap-3">
+            <div className="bg-white/20 p-3 rounded-lg backdrop-blur-sm">
+              <FaUserCheck className="text-2xl" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold">Accepted</h3>
+              <p className="text-white/80 text-sm">
+                {acceptedInvites.length} confirmations
+              </p>
+            </div>
           </div>
           <div className="p-6">
             {acceptedInvites.length === 0 ? (
-              <div className="text-center text-gray-500 py-8">
-                <FaUsers className="text-4xl mx-auto mb-3 text-gray-300" />
-                <p>No confirmations yet</p>
+              <div className="text-center text-white/50 py-12">
+                <FaUsers className="text-5xl mx-auto mb-4 text-white/30" />
+                <p className="text-lg">No confirmations yet</p>
               </div>
             ) : (
               <div className="space-y-3">
                 {acceptedInvites.map((invite) => (
                   <div
                     key={invite.id}
-                    className="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200"
+                    className="flex items-center justify-between p-4 bg-[#74bd9115] rounded-xl border border-[#74bd9133]"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[#74bd91] rounded-full flex items-center justify-center">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#74bd91] to-[#5da577] rounded-full flex items-center justify-center shadow-lg">
                         <FaCheck className="text-white text-sm" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">
+                        <p className="font-semibold text-white text-lg">
                           {invite.name}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-white/60">
                           {formatDate(invite.created_at)}
                         </p>
                       </div>
@@ -96,35 +120,40 @@ export default function InviteList({ invites }: InviteListProps) {
         </div>
 
         {/* Declined Invites */}
-        <div className="small-box rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-[#ef434d] text-white px-6 py-4 flex items-center gap-3">
-            <FaUserTimes className="text-xl" />
-            <h3 className="text-xl font-semibold">
-              Declined Invites ({declinedInvites.length})
-            </h3>
+        <div className="small-box rounded-2xl shadow-2xl overflow-hidden border border-[#ef434d33]">
+          <div className="bg-gradient-to-r from-[#ef434d] to-[#d83859] text-white px-6 py-5 flex items-center gap-3">
+            <div className="bg-white/20 p-3 rounded-lg backdrop-blur-sm">
+              <FaUserTimes className="text-2xl" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold">Declined</h3>
+              <p className="text-white/80 text-sm">
+                {declinedInvites.length} regrets
+              </p>
+            </div>
           </div>
           <div className="p-6">
             {declinedInvites.length === 0 ? (
-              <div className="text-center text-gray-500 py-8">
-                <FaUsers className="text-4xl mx-auto mb-3 text-gray-300" />
-                <p>No declines yet</p>
+              <div className="text-center text-white/50 py-12">
+                <FaUsers className="text-5xl mx-auto mb-4 text-white/30" />
+                <p className="text-lg">No declines yet</p>
               </div>
             ) : (
               <div className="space-y-3">
                 {declinedInvites.map((invite) => (
                   <div
                     key={invite.id}
-                    className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200"
+                    className="flex items-center justify-between p-4 bg-[#ef434d15] rounded-xl border border-[#ef434d33]"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[#ef434d] rounded-full flex items-center justify-center">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#ef434d] to-[#d83859] rounded-full flex items-center justify-center shadow-lg">
                         <FaTimes className="text-white text-sm" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-800">
+                        <p className="font-semibold text-white text-lg">
                           {invite.name}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-white/60">
                           {formatDate(invite.created_at)}
                         </p>
                       </div>
@@ -133,30 +162,6 @@ export default function InviteList({ invites }: InviteListProps) {
                 ))}
               </div>
             )}
-          </div>
-        </div>
-      </div>
-
-      {/* Summary Stats */}
-      <div className="mt-8 small-box rounded-lg shadow-lg p-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div>
-            <div className="text-3xl font-bold text-white">
-              {invites.length}
-            </div>
-            <div className="text-white">Total Invites</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-green-600">
-              {acceptedInvites.length}
-            </div>
-            <div className="text-white">Accepted</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-[#ef434d]">
-              {declinedInvites.length}
-            </div>
-            <div className="text-white">Declined</div>
           </div>
         </div>
       </div>

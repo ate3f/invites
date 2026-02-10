@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Readex_Pro } from "next/font/google";
 import "./globals.css";
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 const readexPro = Readex_Pro({
   subsets: ["latin"],
@@ -19,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${readexPro.variable} antialiased`}>{children}</body>
+
+      <body className={`${readexPro.variable} antialiased`}>
+        <BackgroundBeamsWithCollision>
+          {children}
+        </BackgroundBeamsWithCollision>
+      </body>
     </html>
   );
 }
