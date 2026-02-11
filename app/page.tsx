@@ -1,7 +1,8 @@
 "use client";
 import { insertInvite } from "@/db-actions";
+import Image from "next/image";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 export default function Home() {
   const [state, formAction, isPending] = useActionState(
@@ -9,65 +10,84 @@ export default function Home() {
     undefined,
   );
 
+  // Automatically download PDF when state.ok is true
+  useEffect(() => {
+    if (state?.ok) {
+      // Create a temporary link element to trigger download
+      const link = document.createElement("a");
+      link.href = "/accept.pdf"; // Path to your PDF in the public folder
+      link.download = "accept.pdf"; // Name of the downloaded file
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }, [state?.ok]);
+
   return (
     <div className="md:min-w-[700px] w-full">
       <div className="background-container"></div>
       <div className="container ">
-        {state?.message && !state.ok ? (
-          <div className="w-full not-background h-full"></div>
+        {state?.message ? (
+          <div className="h-full">
+            {state?.ok ? (
+              <Image
+                width={1000}
+                height={2000}
+                src="/accept.png"
+                alt="GEOSA Logo"
+                className="w-full h-full"
+              />
+            ) : (
+              <Image
+                width={1000}
+                height={2000}
+                src="/not-accept.png"
+                alt="GEOSA Logo"
+                className="w-full h-full"
+              />
+            )}
+          </div>
         ) : (
           <div className="rsvp-card">
             <img src="mother-logo.png" alt="GEOSA Logo" className="logo" />
             <h2> ليــــــــــــــــلة مؤثــــــــــــــــر</h2>
             <p className="english-title">Moather Night</p>
-            {!state?.message && (
-              <p className="rsvp-text">
-                <span className="rsvp-arabic">Tap To RSVP </span>
-                <span className="text-white">لتأكيد حضورك</span>
-              </p>
-            )}
-            {state?.message ? (
-              <>
-                {state?.ok && (
-                  <div className="text-white mt-8">
-                    <p className="text-4xl mb-3">شكرا لكم</p>
-                    <p className="text-[15px]">{state.message}</p>
-                  </div>
-                )}
-                {!state?.ok && <p className="text-[12px]">{state.message}</p>}
-              </>
-            ) : (
-              <form action={formAction}>
-                <input
-                  type="text"
-                  name="name"
-                  className="name-input"
-                  placeholder="أكتب اسمك هنا"
-                  required
-                />
 
-                <div className="button-container">
-                  <button
-                    className="btn btn-decline"
-                    type="submit"
-                    name="status"
-                    value="decline"
-                    disabled={isPending}
-                  >
-                    Decline اعتذار
-                  </button>
-                  <button
-                    className="btn btn-confirm"
-                    type="submit"
-                    name="status"
-                    value="confirm"
-                    disabled={isPending}
-                  >
-                    Confirm تأكيد
-                  </button>
-                </div>
-              </form>
-            )}
+            <p className="rsvp-text">
+              <span className="rsvp-arabic">Tap To RSVP </span>
+              <span className="text-white">لتأكيد حضورك</span>
+            </p>
+
+            <form action={formAction}>
+              <input
+                type="text"
+                name="name"
+                className="name-input"
+                placeholder="أكتب اسمك هنا"
+                required
+              />
+
+              <div className="button-container">
+                <button
+                  className="btn btn-decline"
+                  type="submit"
+                  name="status"
+                  value="decline"
+                  disabled={isPending}
+                >
+                  Decline اعتذار
+                </button>
+                <button
+                  className="btn btn-confirm"
+                  type="submit"
+                  name="status"
+                  value="confirm"
+                  disabled={isPending}
+                >
+                  Confirm تأكيد
+                </button>
+              </div>
+            </form>
           </div>
         )}
       </div>
