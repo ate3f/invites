@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={`${readexPro.variable} antialiased`}>
-        <BackgroundBeamsWithCollision>
+      <body className={`${readexPro.variable} antialiased h-svh`}>
+        {/* <BackgroundBeamsWithCollision> */}
           {children}
-        </BackgroundBeamsWithCollision>
+        {/* </BackgroundBeamsWithCollision> */}
       </body>
     </html>
   );

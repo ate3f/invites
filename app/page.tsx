@@ -24,12 +24,12 @@ export default function Home() {
   }, [state?.ok]);
 
   return (
-    <div className="md:min-w-[700px] w-full">
+    <div className="md:min-w-[700px] w-full h-full">
       <div className="background-container"></div>
-      <div className="container ">
+      <div className="container h-full ">
         {state?.message ? (
-          <div className="h-full">
-            {state?.ok ? (
+          state?.ok ? (
+            <div className="h-full">
               <Image
                 width={1000}
                 height={2000}
@@ -40,7 +40,9 @@ export default function Home() {
                 quality={90}
                 loading="eager"
               />
-            ) : (
+            </div>
+          ) : (
+            <div className="h-full">
               <Image
                 width={1000}
                 height={2000}
@@ -51,8 +53,8 @@ export default function Home() {
                 quality={90}
                 loading="eager"
               />
-            )}
-          </div>
+            </div>
+          )
         ) : (
           <div className="rsvp-card">
             <img src="mother-logo.png" alt="GEOSA Logo" className="logo" />
