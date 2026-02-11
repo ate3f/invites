@@ -36,6 +36,9 @@ export default function Home() {
                 src="/accept.png"
                 alt="GEOSA Logo"
                 className="w-full h-full"
+                priority
+                quality={90}
+                loading="eager"
               />
             ) : (
               <Image
@@ -44,6 +47,9 @@ export default function Home() {
                 src="/not-accept.png"
                 alt="GEOSA Logo"
                 className="w-full h-full"
+                priority
+                quality={90}
+                loading="eager"
               />
             )}
           </div>
